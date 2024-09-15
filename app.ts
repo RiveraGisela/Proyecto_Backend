@@ -7,6 +7,7 @@ import get_products from './routes/get_products';
 import update_products from './routes/update_products';
 import delete_products from './routes/delete_products'
 import dotenv from "dotenv";
+import profile from "./controllers/profile-controller";
 dotenv.config();
 
 const app = express().use(bodyParser.json());
@@ -17,6 +18,7 @@ app.use('/register_products', register_products );
 app.use('/get_products', get_products );
 app.use('/update_products', update_products);
 app.use('/delete_products', delete_products);
+app.use('/profile', profile);
 
 
 const PORT = process.env.PORT || 10101;
