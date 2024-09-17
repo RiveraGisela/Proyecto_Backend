@@ -36,11 +36,13 @@ class UserRepository {
 
     }
 
-    static async getProducts(getProducts: GetProducts){
-      const sql = 'SELECT * FROM productos JOIN marcas USING(id_marca) WHERE nombre_producto=?';
+    static async getProducts(getProducts: GetProducts) {
+      const sql = 'SELECT * FROM productos JOIN marcas USING(id_marca) WHERE nombre_producto = ?';
       const values = [getProducts.nombre_producto];
-      return db.execute(sql,values)
+      const [rows] = await db.execute(sql, values);
+      return rows;
     }
+    
 
     static async updateProducts(products: Products){
       const sql = 'UPDATE productos SET precio = ?, id_marca = ? WHERE nombre_producto = ?'
