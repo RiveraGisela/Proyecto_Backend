@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
-import UserService from "../services/UserServices";
+import productService from "../services/ProductService";
 import DeleteProducts from "../Dto/DeleteProductsDto";
+
 
 const delete_products = async (req: Request, res: Response) => {
     try {
         const { nombre_producto, id_marca } = req.body;
-        const deleteproducts = await UserService.deleteProducts(new DeleteProducts(nombre_producto, id_marca));
+        const deleteproducts = await productService.deleteProducts(new DeleteProducts(nombre_producto, id_marca));
         return res.status(200).json({ message: 'Producto eliminado con éxito' });
     } catch (error: any) {
         if (error && error.code === "ER_DUP_ENTRY") {

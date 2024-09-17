@@ -1,11 +1,11 @@
 import Products from "../Dto/ProductsDto";
 import { Request, Response } from "express";
-import UserService from "../services/UserServices";
+import productService from "../services/ProductService";
 
 let update_products= async(req:Request, res:Response)=>{
     try{
         const {nombre_producto, precio, id_marca}=req.body;
-        const update=await UserService.UpdateProducts(new Products(nombre_producto, precio,id_marca))
+        const update=await productService.UpdateProducts(new Products(nombre_producto, precio,id_marca))
         return res.status(201).json({status:'Producto actualizado con exito'});
     } catch(error:any){
         if(error && error.code == "ER_DUP_ENTRY"){
